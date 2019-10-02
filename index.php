@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Megahamster</title>
+    <link rel="stylesheet" href="myCss.css">
 </head>
 <body>
 
 <?php
-require("classes\Room.php");
-$rooms[] = new room("The Flat", 149.00);
-$rooms[] = new room("The Room", 49.00);
-$rooms[] = new room("The pit", 69.00);
+require("classes\OctagonalRoom.php");
+require("classes\RectangularRoom.php");
+$rooms = [new RectangularRoom("The Flat", 149.00, 120, 80),
+        new RectangularRoom("The Room", 49.00, 80, 50),
+        new OctagonalRoom("The pit", 69.00, 20)]
 ?>
 
 <div class="container">
@@ -19,17 +21,14 @@ $rooms[] = new room("The pit", 69.00);
         <tr>
             <th>Produkt</th>
             <th>Preis</th>
+            <th>Länge</th>
+            <th>Breite</th>
+            <th>Seite</th>
+            <th>Fläche</th>
         </tr>
         <?php
         foreach ($rooms as $room) {
-            echo <<<ROOM
-            
-        <tr>
-            <td>{$room->getBezeichnung()}</td>
-            <td>{$room->getPreis()}</td>
-        </tr>
-
-ROOM;
+            echo $room->toHtml();
         }
         ?>
     </table>

@@ -1,0 +1,15 @@
+* {
+    background-color: hsl(0, 0%, 12%);
+    color: hsl(0, 0%, 95%);
+    font-family: "Century Gothic";
+}
+
+td {
+    text-align: left;
+    padding: 5px;
+}
+
+th {
+    text-align: left;
+    padding: 5px;
+}
