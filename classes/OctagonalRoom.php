@@ -1,58 +1,40 @@
 <?php
 
 
-class OctagonalRoom
-{
-    private $preis = 0;
-    private $bezeichnung = "";
-    private $sidelength = "";
+class OctagonalRoom extends Room {
+    private $side;
 
-    function __construct(string $bezeichnung, float $preis, float $sidelength)
-    {
-        $this->preis = $preis;
-        $this->bezeichnung = $bezeichnung;
-        $this->sidelength = $sidelength;
-    }
-
-    public function calcArea()
-    {
-        return round(pow($this->sidelength, 2) * (2+2*sqrt(2)), 2);
-    }
-
-    public function toHtml() {
-        return "<tr>
-            <td>{$this->getBezeichnung()}</td>
-            <td>{$this->getPreis()}</td>
-            <td></td>
-            <td></td>
-            <td>{$this->getSidelength()}</td>
-            <td>{$this->calcArea()}m²</td>
-        </tr>";
-    }
-
-    /**
-     * @return float|int
-     */
-    public function getPreis(): float
-    {
-        return $this->preis;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBezeichnung(): string
-    {
-        return $this->bezeichnung;
+    public function __construct(string $name, float $price, float $side, array $bezeichnung) {
+        parent::__construct($name, $price, $bezeichnung);
+        $this->side = $side;
     }
 
     /**
      * @return float
      */
-    public function getSidelength(): float
-    {
-        return $this->sidelength;
+    public function getSide() : float {
+        return $this->side;
+    }
+
+    public function calcArea() : float {
+        return 2 * (sqrt(2) + 1) * pow($this->side, 2);
+    }
+
+    public function __toString() : string {
+        return parent::getName() . ' ' . parent::getPrice() . '$';
     }
 
 
+    public function toHTML() : string {
+        return
+            "<tr>" .
+                "<td>" . parent::getName() . "</td>" .
+                "<td>" . number_format(parent::getPrice(), 1) . " €</td>" .
+                "<td></td>" .
+                "<td></td>" .
+                "<td>" . number_format($this->getSide(), 1) . " cm</td>" .
+                "<td>" . number_format($this->calcArea(), 1). " cm²</td>" .
+                "<td>" . $this->getBezeichnung() . "</td>" .
+            "</tr>";
+    }
 }

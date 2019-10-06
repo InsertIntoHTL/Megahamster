@@ -1,73 +1,49 @@
 <?php
 
 
-class RectangularRoom
-{
-    private $preis=0;
-    private $bezeichnung="";
-    private $length="";
-    private $width="";
+class RectangularRoom extends Room {
+    private $length;
+    private $width;
 
-
-    function __construct(string $bezeichnung, float $preis, float $length, float $width) {
-        $this->preis = $preis;
-        $this->bezeichnung = $bezeichnung;
+    public function __construct(string $name, float $price, float $length, float $width, array $bezeichnung) {
+        parent::__construct($name, $price, $bezeichnung);
         $this->length = $length;
         $this->width = $width;
     }
 
-    public function toHtml() {
-        return "<tr>
-            <td>{$this->getBezeichnung()}</td>
-            <td>{$this->getPreis()}</td>
-            <td>{$this->getLength()}</td>
-            <td>{$this->getWidth()}</td>
-            <td></td>
-            <td>{$this->calcArea()}m²</td>
-        </tr>";
-    }
-
-    public function calcArea() {
-        return $this->length * $this->width;
-    }
-
     /**
      * @return float
      */
-    public function getPreis() : float
-    {
-        return $this->preis;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBezeichnung() : string
-    {
-        return $this->bezeichnung;
-    }
-
-    /**
-     * @return float
-     */
-    public function getLength() : float
-    {
+    public function getLength() : float {
         return $this->length;
     }
 
-
     /**
      * @return float
      */
-    public function getWidth() : float
-    {
+    public function getWidth() : float {
         return $this->width;
     }
 
+    public function calcArea() : float {
+        return $this->width * $this->length;
+    }
+
+    public function __toString() : string {
+        return parent::getName() . ' ' . parent::getPrice() . '$';
+    }
 
 
-    function __toString()
-    {
-        return $this->getBezeichnung()." : ".$this->getPreis();
+    public function toHTML() : string {
+        return
+            "<tr>" .
+                "<td>" . parent::getName() . "</td>" .
+                "<td>" . number_format(parent::getPrice(), 1) . " €</td>" .
+                "<td>" . number_format($this->getLength(), 1) . " cm</td>" .
+                "<td>" . number_format($this->getWidth(), 1) . " cm</td>" .
+                "<td></td>" .
+                "<td>" . number_format($this->calcArea(), 1) . " cm²</td>" .
+                "<td>" . $this->getBezeichnung() . "</td>" .
+            "</tr>";
     }
 }
