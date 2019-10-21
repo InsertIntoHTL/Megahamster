@@ -1,5 +1,6 @@
 <?php
 
+namespace InsertIntoHTL\Megahamster\Living;
 
 class RectangularRoom extends Room {
     private $length;

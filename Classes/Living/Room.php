@@ -1,5 +1,6 @@
 <?php
 
+namespace InsertIntoHTL\Megahamster\Living;
 
 abstract class Room {
     private $price;

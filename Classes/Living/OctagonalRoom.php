@@ -1,5 +1,6 @@
 <?php
 
+namespace InsertIntoHTL\Megahamster\Living;
 
 class OctagonalRoom extends Room {
     private $side;
