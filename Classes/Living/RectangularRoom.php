@@ -2,7 +2,7 @@
 
 namespace InsertIntoHTL\Megahamster\Living;
 
-class RectangularRoom extends Room {
+class RectangularRoom extends Room implements \JsonSerializable {
     private $length;
     private $width;
 
@@ -46,5 +46,22 @@ class RectangularRoom extends Room {
                 "<td>" . number_format($this->calcArea(), 1) . " cm²</td>" .
                 "<td>" . $this->getBezeichnung() . "</td>" .
             "</tr>";
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        $rv['name'] = $this->getName();
+        $rv['preis'] = $this->getPrice();
+        $rv['length'] = $this->getLength();
+        $rv['width'] = $this->getWidth();
+        $rv['bezeichnung'] = $this->getBezeichnung();
+        return $rv;
     }
 }

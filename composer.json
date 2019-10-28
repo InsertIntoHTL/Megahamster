@@ -1,0 +1,18 @@
+{
+    "name": "leoso/megahamster",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Leo Sollereder",
+            "email": "5125@htl.rennweg.at"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "InsertIntoHTL\\Megahamster\\": "Classes/"
+        }
+    },
+    "require": {
+        "ext-json": "*"
+    }
+}

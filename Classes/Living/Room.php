@@ -41,7 +41,6 @@ abstract class Room {
 
 
 
-
     public abstract function calcArea() : float ;
     public abstract function toHTML() : string ;
 }
