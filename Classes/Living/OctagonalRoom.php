@@ -51,7 +51,7 @@ class OctagonalRoom extends Room implements \JsonSerializable {
         $rv['name'] = $this->getName();
         $rv['preis'] = $this->getPrice();
         $rv['seite'] = $this->getSide();
-        $rv['bezeichnung'] = $this->getBezeichnung();
+        $rv['bezeichnung'] = parent::getBezeichnungRaw();
         return $rv;
     }
 }

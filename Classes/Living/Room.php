@@ -27,6 +27,8 @@ abstract class Room {
         return $this->price;
     }
 
+
+
     /**
      * @return array
      */
@@ -38,6 +40,15 @@ abstract class Room {
         }
         return $str;
     }
+
+    /**
+     * @return array
+     */
+    public function getBezeichnungRaw(): array
+    {
+        return $this->bezeichnung;
+    }
+
 
 
 

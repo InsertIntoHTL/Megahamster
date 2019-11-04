@@ -61,7 +61,7 @@ class RectangularRoom extends Room implements \JsonSerializable {
         $rv['preis'] = $this->getPrice();
         $rv['length'] = $this->getLength();
         $rv['width'] = $this->getWidth();
-        $rv['bezeichnung'] = $this->getBezeichnung();
+        $rv['bezeichnung'] = parent::getBezeichnungRaw();
         return $rv;
     }
 }
