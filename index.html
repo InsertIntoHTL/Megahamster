@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Megahamster</title>
+</head>
+<body>
+<div id="content">
+    CONTENT NOT YET LOADED!
+</div>
+
+<script type="text/javascript">
+
+    fetch('index.php?format=json')
+        .then((result) => {
+            return result.json();
+        })
+        .then((json) => {
+            console.log(json);
+            let content = document.querySelector('#content');
+            let innerHTML = "<table><tr>";
+            let titleArray = [];
+            for (let i in json) {
+                for (let j in json[i]) {
+                    if(test.includes(j)) {
+                        break;
+                    }
+                    innerHTML += "<th>" + j + "</th>";
+                }
+            }
+            innerHTML += "</tr>";
+            for (let i in json) {
+                innerHTML += "<tr>";
+                for (let j in json[i]) {
+                    let attrValue = json[i][j];
+                    innerHTML += "<td>" + attrValue + "</td>";
+                }
+                innerHTML += "</tr>";
+            }
+            content.innerHTML = innerHTML;
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+</script>
+</body>
+</html>
