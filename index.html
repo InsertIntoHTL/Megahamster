@@ -15,28 +15,39 @@
         .then((result) => {
             return result.json();
         })
-        .then((json) => {
-            console.log(json);
-            let content = document.querySelector('#content');
-            let innerHTML = "<table><tr>";
-            let titleArray = [];
-            for (let i in json) {
-                for (let j in json[i]) {
-                    if(test.includes(j)) {
-                        break;
+        .then((result) => {
+            let content = document.getElementById("content");
+            let attributes = [];
+
+            let innerHTML = "<table>";
+
+            innerHTML += "<tr>";
+            for (let i = 0; i < result.length; i++) {
+
+                for (let attribute in result[i]) {
+                    if (!attributes.includes(attribute)) {
+                        console.log(attribute);
+                        attributes.push(attribute);
+                        innerHTML += "<th>" + attribute + "</th>";
                     }
-                    innerHTML += "<th>" + j + "</th>";
                 }
+
             }
             innerHTML += "</tr>";
-            for (let i in json) {
+
+            for (let i = 0; i < result.length; i++) {
                 innerHTML += "<tr>";
-                for (let j in json[i]) {
-                    let attrValue = json[i][j];
-                    innerHTML += "<td>" + attrValue + "</td>";
+                for (let j = 0; j < attributes.length; j++) {
+                    // result[i][attribute] = "";
+                    if (typeof result[i][attributes[j]] == "undefined") {
+                        innerHTML += "<td>" + "/" + "</td>";
+                    } else {
+                        innerHTML += "<td>" + result[i][attributes[j]] + "</td>";
+                    }
                 }
                 innerHTML += "</tr>";
             }
+            innerHTML += "</table>";
             content.innerHTML = innerHTML;
         })
         .catch((err) => {
