@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Megahamster</title>
 </head>
-<body>
-<div id="content">
+
+<body style="background-color: black; padding: 10px; font-family: 'Century Gothic'; height: 100%; width: 98%">
+<div id="content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
     CONTENT NOT YET LOADED!
 </div>
 
@@ -19,16 +20,15 @@
             let content = document.getElementById("content");
             let attributes = [];
 
-            let innerHTML = "<table>";
+            let innerHTML = "<h1 style='color: white; text-align: center; font-size: 78px'>Megahamster</h1><br><table style='color: white;'>";
 
             innerHTML += "<tr>";
             for (let i = 0; i < result.length; i++) {
-
                 for (let attribute in result[i]) {
                     if (!attributes.includes(attribute)) {
                         console.log(attribute);
                         attributes.push(attribute);
-                        innerHTML += "<th>" + attribute + "</th>";
+                        innerHTML += "<th style='font-size: 20px; padding-left: 50px; padding-right: 50px; text-align-all: left'>" + attribute + "</th>";
                     }
                 }
 
